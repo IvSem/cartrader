@@ -1,0 +1,19 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body,
+  html,
+  #__nuxt {
+    /*scrollbar-gutter: stable;*/
+    @apply h-full bg-inherit;
+  }
+  body {
+    @apply bg-white font-sans text-base font-medium text-black/70  sm:text-lg;
+  }
+
+  .wrapper {
+    @apply flex min-h-full min-w-[360px] flex-col dark:bg-black dark:text-white/70 transition-colors;
+  }
+}
