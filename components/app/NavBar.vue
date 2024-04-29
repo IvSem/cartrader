@@ -10,7 +10,9 @@ const store = useStore();
   <header
     class="sticky w-full top-0 z-50 space-x-1 flex justify-between items-center p-4 shadow-md bg-white dark:bg-slate-600 transition-colors"
   >
-    <NuxtLink @click="router.push('/')" class="font-mono text-3xl text-black cursor-pointer">Cartrader</NuxtLink>
+    <NuxtLink @click="router.push('/')" class="font-mono text-3xl text-black dark:text-white cursor-pointer">
+      Cartrader
+    </NuxtLink>
 
     <div v-if="store.isLoggedIn" class="flex gap-x-2 items-center">
       <div class="w-10 h-10 rounded-full overflow-hidden relative bg-gray-400">
