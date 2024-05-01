@@ -53,6 +53,17 @@ const store = useStore();
                   Account
                 </button>
               </MenuItem>
+              <MenuItem v-slot="{ active }">
+                <button
+                  :class="[
+                    active ? 'bg-violet-500 text-white' : 'text-gray-900',
+                    'group flex w-full items-center rounded-md px-2 py-2 text-sm',
+                  ]"
+                  @click="navigateTo('/profile/listings')"
+                >
+                  My Listings
+                </button>
+              </MenuItem>
             </div>
             <div class="px-1 py-1">
               <MenuItem v-slot="{ active }">
@@ -73,11 +84,11 @@ const store = useStore();
     </div>
     <div v-else class="flex gap-x-2">
       <NuxtLink to="/login" class="p-2 bg-orange-400 hover:bg-orange-500 transition-colors rounded text-black"
-        >Log In</NuxtLink
-      >
+        >Log In
+      </NuxtLink>
       <NuxtLink to="/register" class="p-2 bg-green-400 hover:bg-green-500 transition-colors rounded text-black"
-        >Sign Up</NuxtLink
-      >
+        >Sign Up
+      </NuxtLink>
     </div>
   </header>
 </template>

@@ -1,5 +1,5 @@
 <script setup>
-const { cars } = useCars();
+//const { cars } = useCars();
 const favorite = useLocalStorage('favorite', {});
 
 const handleFavorite = (id) => {
@@ -12,6 +12,10 @@ const handleFavorite = (id) => {
     };
   }
 };
+
+const props = defineProps({
+  cars: Array,
+});
 </script>
 
 <template>

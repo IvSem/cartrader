@@ -8,6 +8,7 @@ const props = defineProps({
 });
 
 const emit = defineEmits(['favore']);
+const config = useRuntimeConfig();
 </script>
 
 <template>
@@ -23,7 +24,11 @@ const emit = defineEmits(['favore']);
     />
 
     <div class="flex h-full">
-      <NuxtImg :src="car.url" alt="" class="w-[300px] h-full object-cover" />
+      <NuxtImg
+        :src="`${config.public.supabase.url}/storage/v1/object/public/images/${car.image}`"
+        alt=""
+        class="w-[300px] h-full object-cover"
+      />
       <div class="p-4 flex flex-col">
         <div>
           <h1 class="text-2xl text-blue-700 dark:text-blue-300">{{ car.name }}</h1>

@@ -1,5 +1,8 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
+	 typescript: {
+    strict: false
+  },
   devtools: { enabled: true },
   modules: ['@nuxt/image', '@nuxtjs/color-mode', '@vueuse/nuxt', '@nuxtjs/supabase', 'nuxt-headlessui', '@pinia/nuxt'],
   css: ['~/assets/css/main.css'],
