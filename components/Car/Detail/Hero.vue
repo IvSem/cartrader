@@ -8,7 +8,7 @@ const config = useRuntimeConfig();
 
 <template>
   <div class="mt-10">
-    <NuxtImg
+    <img
       :src="`${config.public.supabase.url}/storage/v1/object/public/images/${car.image}`"
       class="w-full h-80 object-contain"
       alt=""
@@ -19,6 +19,16 @@ const config = useRuntimeConfig();
         <p class="mr-2">{{ car.numberOfSeats }} seats</p>
         <p class="mr-2">|</p>
         <p class="mr-2">{{ car.miles }} miles</p>
+      </div>
+      <div>
+        <p class="text-slate-500 text-lg">
+          City:
+          <span
+            class="font-bold underline cursor-pointer hover:text-blue-500 transition-colors"
+            @click="navigateTo(`/city/${car.city}/car`)"
+            >{{ car.city }}</span
+          >
+        </p>
       </div>
       <div>
         <p class="font-bold text-2xl">$ {{ car.price }}</p>

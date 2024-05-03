@@ -9,7 +9,10 @@ const config = useRuntimeConfig();
 </script>
 
 <template>
-  <div class="shadow rounded overflow-hidden flex justify-between mb-4">
+  <div
+    class="shadow rounded overflow-hidden flex justify-between mb-4 cursor-pointer"
+    @click="navigateTo(`/car/${listing.name}-${listing.id}`)"
+  >
     <div class="flex">
       <img
         :src="`${config.public.supabase.url}/storage/v1/object/public/images/${listing.image}`"

@@ -24,7 +24,7 @@ const config = useRuntimeConfig();
     />
 
     <div class="flex h-full">
-      <NuxtImg
+      <img
         :src="`${config.public.supabase.url}/storage/v1/object/public/images/${car.image}`"
         alt=""
         class="w-[300px] h-full object-cover"
