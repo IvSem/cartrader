@@ -2,10 +2,14 @@
 definePageMeta({
   layout: 'custom',
 });
+useHead({
+  title: 'Create a New Listing',
+});
 
 const { makes } = useCars();
 const user = useSupabaseUser();
 const supabase = useSupabaseClient();
+const submitButton = ref(null);
 
 const info = useState('adInfo', () => {
   return {
@@ -26,6 +30,10 @@ const errorMessage = ref('');
 
 const onChangeInput = (data, name) => {
   info.value[name] = data;
+
+  if (name === 'image') {
+    clearFormFlag.value = false;
+  }
 };
 
 const inputs = [
@@ -82,10 +90,9 @@ const isButtonDisabled = computed(() => {
 });
 
 const handleSubmit = async () => {
+  submitButton.value.disabled = true;
   const fileName = Math.floor(Math.random() * 10000000000000);
-
   const { data, error } = await supabase.storage.from('images').upload('public/' + fileName, info.value.image);
-
   if (error) {
     return (errorMessage.value = 'Cannot upload image');
   }
@@ -108,12 +115,27 @@ const handleSubmit = async () => {
       method: 'POST',
       body: body,
     });
+    info.value = {
+      make: '',
+      model: '',
+      year: '',
+      miles: '',
+      price: '',
+      city: '',
+      seats: '',
+      features: '',
+      description: '',
+      image: null,
+    };
+    clearFormFlag.value = true;
     navigateTo('/profile/listings');
   } catch (error) {
     errorMessage.value = error.statusMessage;
     await supabase.storage.from('images').remove(data.path);
   }
 };
+
+const clearFormFlag = ref(false);
 </script>
 
 <template>
@@ -132,15 +154,17 @@ const handleSubmit = async () => {
         @change-input="onChangeInput"
       />
       <CarAdTextarea title="Description *" name="description" placeholder="" @change-input="onChangeInput" />
-      <CarAdImage @change-input="onChangeInput" />
+      <CarAdImage @change-input="onChangeInput" :clearForm="clearFormFlag" />
       <div class="text-center w-full">
         <button
           :disabled="isButtonDisabled"
           @click="handleSubmit"
           class="bg-blue-400 w-full mt-2 rounded text-white p-3 disabled:bg-blue-200"
+          ref="submitButton"
         >
           Submit
         </button>
+
         <p class="mt-3 text-red-400" v-if="errorMessage">{{ errorMessage }}</p>
       </div>
     </div>

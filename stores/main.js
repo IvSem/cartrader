@@ -52,7 +52,7 @@ export const useStore = defineStore('main', () => {
           successMsg.value = '';
         }, 1000);
       }
-      console.log('data', data);
+
       if (error) throw error;
     } catch (error) {
       errorMsg.value = error.error_description || error.message;

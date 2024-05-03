@@ -2,6 +2,9 @@
 definePageMeta({
   layout: 'custom',
 });
+useHead({
+  title: 'My listings',
+});
 
 const user = useSupabaseUser();
 const { data: listings, refresh } = await useFetch(`/api/car/listings/user/${user.value.id}`);

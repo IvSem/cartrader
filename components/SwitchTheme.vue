@@ -5,12 +5,10 @@ const enabled = ref(false);
 
 const toogleTheme = () => {
   if (colorMode.preference === 'dark') {
-    console.log('change light');
     colorMode.preference = 'light';
     return;
   }
   if (colorMode.preference === 'light') {
-    console.log('change dark');
     colorMode.preference = 'dark';
     return;
   }

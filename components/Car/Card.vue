@@ -29,12 +29,14 @@ const config = useRuntimeConfig();
         alt=""
         class="w-[300px] h-full object-cover"
       />
-      <div class="p-4 flex flex-col">
+      <div class="p-4 flex flex-col justify-between min-w-0">
         <div>
           <h1 class="text-2xl text-blue-700 dark:text-blue-300">{{ car.name }}</h1>
-          <p class="text-gray-700 dark:text-inherit">{{ car.description }}</p>
+          <p class="text-gray-700 dark:text-inherit line-clamp-3">{{ car.description }}</p>
+
+          <NuxtLink :to="`/car/${car.name}-${car.id}`" class="text-blue-600 hover:underline">Read More...</NuxtLink>
         </div>
-        <h1 class="mt-auto text-xl">$ {{ car.price }}</h1>
+        <h1 class="mt-1 text-xl">$ {{ car.price }}</h1>
       </div>
     </div>
   </div>

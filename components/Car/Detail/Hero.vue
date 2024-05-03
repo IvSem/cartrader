@@ -2,8 +2,33 @@
 const props = defineProps({
   car: Object,
 });
-
 const config = useRuntimeConfig();
+const supabase = useSupabaseClient();
+const username = ref('');
+const avatarUrl = ref('');
+const src = ref('');
+
+const { data } = await supabase
+  .from('profiles')
+  .select(`username, website, avatar_url`)
+  .eq('id', props.car.listerId)
+  .single();
+
+if (data) {
+  username.value = data.username;
+  avatarUrl.value = data.avatar_url;
+}
+
+const downloadImage = async () => {
+  try {
+    const { data, error } = await supabase.storage.from('avatars').download(avatarUrl.value);
+    if (error) throw error;
+    src.value = URL.createObjectURL(data);
+  } catch (error) {
+    console.error('Error downloading image: ', error.message);
+  }
+};
+downloadImage();
 </script>
 
 <template>
@@ -13,7 +38,18 @@ const config = useRuntimeConfig();
       class="w-full h-80 object-contain"
       alt=""
     />
-    <h1 class="mt-10 text-4xl">{{ car.name }}</h1>
+
+    <div class="flex gap-x-2 items-center mt-10">
+      <p>Created at :</p>
+      <div class="flex gap-x-2 items-center">
+        <div class="w-10 h-10 rounded-full overflow-hidden relative bg-gray-400">
+          <img :src="src" class="absolute w-full h-full object-cover" alt="" />
+        </div>
+        <p class="text-lg font-bold text-black">{{ username }}</p>
+      </div>
+    </div>
+
+    <h1 class="text-4xl">{{ car.name }}</h1>
     <div class="text-slate-500 flex text-lg mt-3 border-b pb-5 justify-between">
       <div class="flex">
         <p class="mr-2">{{ car.numberOfSeats }} seats</p>

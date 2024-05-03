@@ -1,33 +1,7 @@
 <script setup>
-//const supabase = useSupabaseClient();
 const store = useStore();
-
 const email = ref('');
 const password = ref('');
-//const errorMsg = ref('');
-//const successMsg = ref('');
-//const loading = ref(false);
-
-//const signUpUser = async () => {
-//  try {
-//    errorMsg.value = '';
-//    loading.value = true;
-//    let { data, error } = await supabase.auth.signUp({
-//      email: email.value,
-//      password: password.value,
-//    });
-//    if (!error) {
-//      navigateTo('/');
-//      successMsg.value = 'Your succes restrarion!';
-//    }
-//    console.log('data', data);
-//    if (error) throw error;
-//  } catch (error) {
-//    errorMsg.value = error.error_description || error.message;
-//  } finally {
-//    loading.value = false;
-//  }
-//};
 </script>
 
 <template>

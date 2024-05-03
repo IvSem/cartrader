@@ -6,7 +6,6 @@ definePageMeta({
 const route = useRoute();
 
 const { data: messages } = useFetch(`/api/car/listings/${route.params.id}/message`);
-console.log(':>  messages:', messages.value);
 </script>
 
 <template>

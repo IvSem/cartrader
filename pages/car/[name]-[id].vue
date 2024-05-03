@@ -1,8 +1,10 @@
 <script setup>
 const route = useRoute();
 const { data: car } = await useFetchCar(route.params.id);
+
 const user = useSupabaseUser();
 const { toTitleCase } = useUtilities();
+
 definePageMeta({
   layout: 'custom',
 });
